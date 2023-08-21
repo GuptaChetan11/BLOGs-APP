@@ -8,6 +8,9 @@ const connectDB = require("./config/db");
 //env config
 dotenv.config();
 
+//router import
+const userRoutes = require("./routes/userRoutes");
+
 //momgodb connection
 connectDB();
 
@@ -20,11 +23,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routes
-app.get("/", (req, res) => {
-  res.status(200).send({
-    message: "Node server",
-  });
-});
+app.use("/api/v1/user", userRoutes);
 
 //port
 const PORT = process.env.PORT || 8080;
